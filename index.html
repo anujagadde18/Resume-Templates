@@ -1,1 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional resume templates for Data Analysts, Data Scientists, Product Analysts, and Business Analysts">
+    <title>Professional Resume Templates - Data & Analytics Careers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .header p {
+            font-size: 20px;
+            opacity: 0.95;
+        }
+        .content {
+            padding: 50px 40px;
+        }
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .template-card {
+            background: white;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .template-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .template-card:hover::before {
+            transform: scaleX(1);
+        }
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            border-color: #667eea;
+        }
+        .icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+        .template-card h3 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .template-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            min-height: 70px;
+        }
+        .view-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .view-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        .view-btn:active {
+            transform: scale(0.98);
+        }
+        .instructions {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 35px;
+            margin-top: 40px;
+        }
+        .instructions h3 {
+            color: #2c3e50;
+            font-size: 26px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 2.2;
+        }
+        .instructions li {
+            color: #555;
+            font-size: 16px;
+            margin: 12px 0;
+        }
+        .instructions strong {
+            color: #2c3e50;
+        }
+        .alert {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 8px;
+        }
+        .alert strong {
+            color: #856404;
+            font-size: 17px;
+        }
+        .alert p {
+            color: #856404;
+            margin-top: 8px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .preview-area {
+            margin-top: 50px;
+            padding: 35px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .preview-area.active {
+            display: block;
+        }
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .preview-header h3 {
+            color: #2c3e50;
+            font-size: 22px;
+            flex: 1;
+        }
+        .close-preview {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .close-preview:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        .preview-content {
+            background: white;
+            padding: 45px;
+            border-radius: 10px;
+            max-height: 600px;
+            overflow-y: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .copy-html-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+            font-size: 15px;
+        }
+        .copy-html-btn:hover {
+            background: #229954;
+            transform: scale(1.05);
+        }
+        .copy-html-btn.copied {
+            background: #2ecc71;
+        }
+        .help-text {
+            margin-top: 12px;
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+            .header p {
+                font-size: 16px;
+            }
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+            .content {
+                padding: 30px 20px;
+            }
+            .preview-content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📄 Professional Resume Templates</h1>
+            <p>Data & Analytics Career Templates - Ready to Customize</p>
+        </div>
+        
+        <div class="content">
+            <div class="template-grid">
+                <div class="template-card" onclick="showTemplate('analyst')">
+                    <div class="icon">📊</div>
+                    <h3>Data Analyst</h3>
+                    <p>Perfect for roles focused on SQL, dashboards, reporting, and business intelligence</p>
+                    <button class="view-btn">View & Copy Template</button>
+                </div>
+                
+                <div class="template-card" onclick="showTemplate('scientist')">
+                    <div class="icon">🤖</div>
+                    <h3>Data Scientist</h3>
+                    <p>Ideal for ML engineers and scientists working with predictive models and AI</p>
+                    <button class="view-btn">View & Copy Template</button>
+                </div>
+                
+                <div class="template-card" onclick="showTemplate('product')">
+                    <div class="icon">📈</div>
+                    <h3>Product Analyst</h3>
+                    <p>Tailored for A/B testing, user behavior analysis, and product metrics</p>
+                    <button class="view-btn">View & Copy Template</button>
+                </div>
+                
+                <div class="template-card" onclick="showTemplate('business')">
+                    <div class="icon">💼</div>
+                    <h3>Business Analyst</h3>
+                    <p>Designed for requirements gathering, stakeholder management, and process improvement</p>
+                    <button class="view-btn">View & Copy Template</button>
+                </div>
+            </div>
 
+            <div id="previewArea" class="preview-area">
+                <div class="preview-header">
+                    <h3 id="previewTitle">Template Preview</h3>
+                    <button class="close-preview" onclick="closePreview()">✕ Close</button>
+                </div>
+                <div id="previewContent" class="preview-content"></div>
+                <button class="copy-html-btn" id="copyBtn" onclick="copyToClipboard()">📋 Copy HTML to Clipboard</button>
+                <p class="help-text">After copying, paste directly into Microsoft Word and save as .docx</p>
+            </div>
+
+            <div class="instructions">
+                <h3>📝 How to Use These Templates</h3>
+                <ol>
+                    <li><strong>Click</strong> on any template card above to view the full resume</li>
+                    <li><strong>Click "Copy HTML to Clipboard"</strong> button below the preview</li>
+                    <li><strong>Open Microsoft Word</strong> (desktop version recommended)</li>
+                    <li><strong>Paste</strong> using Ctrl+V (Windows) or Cmd+V (Mac)</li>
+                    <li><strong>Save as .docx</strong> file with your preferred name</li>
+                    <li><strong>Replace</strong> all [bracketed] placeholders with your actual information</li>
+                    <li><strong>Customize</strong> bullet points with your specific achievements and metrics</li>
+                    <li><strong>Keep it to 1-2 pages</strong> maximum for best ATS results</li>
+                </ol>
+                
+                <div class="alert">
+                    <strong>⚠️ Pro Tip:</strong>
+                    <p>Each template is specifically optimized for its role type. Use the Data Analyst template for analyst roles, Data Scientist for ML/AI positions, Product Analyst for product-focused roles, and Business Analyst for BA positions. Tailoring your resume to the specific role increases your chances of passing ATS systems and landing interviews!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 Professional Resume Templates | Designed for Data & Analytics Professionals</p>
+        </div>
+    </div>
+
+    <script>
+        const templates = {
+            analyst: {
+                title: 'Data Analyst Resume Template',
+                html: `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Calibri,Arial,sans-serif;margin:40px;line-height:1.4;color:#333}h1{text-align:center;font-size:24pt;margin-bottom:5px;color:#2c3e50;font-weight:bold}.contact{text-align:center;font-size:10pt;margin-bottom:20px;color:#555}h2{font-size:14pt;color:#2c3e50;border-bottom:2px solid #3498db;padding-bottom:3px;margin-top:20px;font-weight:bold;margin-bottom:12px}.job-header{margin-top:15px}.job-title{font-weight:bold;font-size:11pt;margin-bottom:3px}.company-info{font-style:italic;font-size:10pt;color:#555;margin-bottom:8px}ul{margin:8px 0;padding-left:25px}li{font-size:10pt;margin-bottom:6px;line-height:1.5}.skills-line{font-size:10pt;margin-bottom:10px;line-height:1.6}.skills-line strong{color:#2c3e50}</style></head><body><h1>[YOUR FULL NAME]</h1><div class="contact">[Phone] | [Email] | [LinkedIn] | [GitHub]</div><h2>SKILLS</h2><div class="skills-line"><strong>Data Analysis & Visualization:</strong> Power BI, Tableau, Excel, Looker, Google Analytics, Alteryx</div><div class="skills-line"><strong>Programming & Databases:</strong> SQL, Python, R, BigQuery, Snowflake, PostgreSQL</div><div class="skills-line"><strong>Cloud Technologies:</strong> AWS, GCP, Azure Data Factory, Databricks</div><div class="skills-line"><strong>Core Competencies:</strong> Data Mining, Statistical Analysis, A/B Testing, Dashboard Development, KPI Tracking, ETL</div><h2>PROFESSIONAL EXPERIENCE</h2><div class="job-header"><div class="job-title">[Job Title - Data Analyst]</div><div class="company-info">[Company], [Location] | [Dates]</div></div><ul><li><strong>Dashboard Development:</strong> Created [number] automated dashboards using [Power BI/Tableau] tracking [KPIs], saving [X] hours weekly and improving decision-making by [Y%]</li><li><strong>Data Analysis:</strong> Analyzed [data] using SQL/Python, improving [metric] by [X%]</li><li><strong>Revenue Optimization:</strong> Developed analytical models that increased revenue by [$X] or improved performance by [Y%]</li><li><strong>A/B Testing:</strong> Designed [number] experiments improving [metric] by [X%]</li><li><strong>ETL & Data Pipeline:</strong> Built ETL workflows processing [volume] daily, improving data quality by [X%]</li><li><strong>Cross-functional Collaboration:</strong> Partnered with [teams] to translate business needs into analytical solutions</li></ul><div class="job-header"><div class="job-title">[Job Title]</div><div class="company-info">[Company], [Location] | [Dates]</div></div><ul><li><strong>Reporting:</strong> Developed [number] automated reports reducing manual effort by [X] hours</li><li><strong>Forecasting:</strong> Applied time series models achieving [X%] forecast accuracy</li><li><strong>Customer Analytics:</strong> Conducted segmentation analysis driving [business outcome]</li><li><strong>SQL Optimization:</strong> Optimized [number] queries improving performance by [X%]</li></ul><h2>PROJECTS</h2><div style="margin-top:15px"><div style="font-weight:bold;font-size:11pt">[Project Name]</div><div style="font-style:italic;font-size:9pt;color:#555">#PowerBI #SQL #Python</div><div style="font-size:10pt;margin-top:5px">[Brief description of what you built, tools used, and measurable outcome]</div></div><h2>EDUCATION</h2><div style="margin-top:15px"><div style="font-weight:bold;font-size:11pt">[Degree] in [Field] | [Year] | GPA: [X.X/4.0]</div><div style="font-style:italic;font-size:10pt">[University], [Location]</div></div></body></html>`
+            },
+            scientist: {
+                title: 'Data Scientist Resume Template',
+                html: `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Calibri,Arial,sans-serif;margin:40px;line-height:1.4;color:#333}h1{text-align:center;font-size:24pt;margin-bottom:5px;color:#2c3e50;font-weight:bold}.contact{text-align:center;font-size:10pt;margin-bottom:20px;color:#555}h2{font-size:14pt;color:#2c3e50;border-bottom:2px solid #3498db;padding-bottom:3px;margin-top:20px;font-weight:bold;margin-bottom:12px}.job-header{margin-top:15px}.job-title{font-weight:bold;font-size:11pt;margin-bottom:3px}.company-info{font-style:italic;font-size:10pt;color:#555;margin-bottom:8px}ul{margin:8px 0;padding-left:25px}li{font-size:10pt;margin-bottom:6px;line-height:1.5}.skills-line{font-size:10pt;margin-bottom:10px;line-height:1.6}.skills-line strong{color:#2c3e50}</style></head><body><h1>[YOUR FULL NAME]</h1><div class="contact">[Phone] | [Email] | [LinkedIn] | [GitHub]</div><h2>SKILLS</h2><div class="skills-line"><strong>Programming:</strong> Python (Pandas, NumPy, Scikit-learn), R, SQL, Java</div><div class="skills-line"><strong>ML & AI:</strong> TensorFlow, PyTorch, XGBoost, Neural Networks, NLP, Computer Vision</div><div class="skills-line"><strong>Generative AI:</strong> GPT, PaLM, LangChain, Fine-tuning, RAG</div><div class="skills-line"><strong>Cloud:</strong> AWS SageMaker, GCP Vertex AI, Azure ML, Spark, Databricks</div><div class="skills-line"><strong>Core:</strong> Predictive Modeling, Statistical Analysis, Feature Engineering, MLOps</div><h2>PROFESSIONAL EXPERIENCE</h2><div class="job-header"><div class="job-title">[Job Title - Data Scientist]</div><div class="company-info">[Company], [Location] | [Dates]</div></div><ul><li><strong>ML Development:</strong> Built [number] models using [TensorFlow/PyTorch] achieving [X%] accuracy, improving [metric] by [Y%]</li><li><strong>Predictive Analytics:</strong> Developed forecasting models increasing [retention/revenue] by [X%]</li><li><strong>Deep Learning & NLP:</strong> Implemented [solutions] using [transformers/LSTM] improving performance by [X%]</li><li><strong>LLM Integration:</strong> Integrated GPT/PaLM driving [X%] increase in engagement</li><li><strong>Feature Engineering:</strong> Designed [number] features improving model performance by [X%]</li><li><strong>Model Deployment:</strong> Deployed models using Docker/Kubernetes reducing deployment time by [X%]</li><li><strong>A/B Testing:</strong> Designed [number] experiments validating model impact</li></ul><div class="job-header"><div class="job-title">[Job Title]</div><div class="company-info">[Company], [Location] | [Dates]</div></div><ul><li><strong>EDA:</strong> Conducted analysis on [dataset] uncovering insights driving [action]</li><li><strong>Algorithm Development:</strong> Implemented advanced algorithms outperforming baseline by [X%]</li><li><strong>Time Series:</strong> Built forecasting models achieving [X%] accuracy</li><li><strong>Recommendation Systems:</strong> Developed engine increasing CTR by [X%]</li></ul><h2>PROJECTS</h2><div style="margin-top:15px"><div style="font-weight:bold;font-size:11pt">[Project Name]</div><div style="font-style:italic;font-size:9pt;color:#555">#MachineLearning #DeepLearning</div><div style="font-size:10pt;margin-top:5px">[Description of ML problem, models used, and results with metrics]</div></div><h2>EDUCATION</h2><div style="margin-top:15px"><div style="font-weight:bold;font-size:11pt">[Degree] in [Field] | [Year] | GPA: [X.X/4.0]</div><div style="font-style:italic;font-size:10pt">[University], [Location]</div><div style="font-size:10pt;margin-top:5px"><strong>Thesis:</strong> [Title and description]</div></div></body></html>`
+            },
+            product: {
+                title: 'Product Analyst Resume Template',
+                html: `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Calibri,Arial,sans-serif;margin:40px;line-height:1.4;color:#333}h1{text-align:center;font-size:24pt;margin-bottom:5px;color:#2c3e50;font-weight:bold}.contact{text-align:center;font-size:10pt;margin-bottom:20px;color:#555}h2{font-size:14pt;color:#2c3e50;border-bottom:2px solid #3498db;padding-bottom:3px;margin-top:20px;font-weight:bold;margin-bottom:12px}.job-header{margin-top:15px}.job-title{font-weight:bold;font-size:11pt;margin-bottom:3px}.company-info{font-style:italic;font-size:10pt;color:#555;margin-bottom:8px}ul{margin:8px 0;padding-left:25px}li{font-size:10pt;margin-bottom:6px;line-height:1.5}.skills-line{font-size:10pt;margin-bottom:10px;line-height:1.6}.skills-line strong{color:#2c3e50}</style></head><body><h1>[YOUR FULL NAME]</h1><div class="contact">[Phone] | [Email] | [LinkedIn]</div><h2>SKILLS</h2><div class="skills-line"><strong>Analytics:</strong> A/B Testing, Statistical Analysis, Cohort Analysis, Funnel Analysis</div><div class="skills-line"><strong>Product Tools:</strong> Mixpanel, Amplitude, Google Analytics, Looker, Segment</div><div class="skills-line"><strong>Technical:</strong> SQL, Python, BigQuery, Tableau, Power BI</div><div class="skills-line"><strong>Core:</strong> Product Metrics (DAU/MAU, Retention), User Behavior, Growth Analytics</div><h2>PROFESSIONAL EXPERIENCE</h2><div class="job-header"><div class="job-title">[Job Title - Product Analyst]</div><div class="company-info">[Company], [Location] | [Dates]</div></div><ul><li><strong>Product Metrics:</strong> Defined and tracked [number] KPIs including DAU/MAU improving [metric] by [X%]</li><li><strong>A/B Testing:</strong> Designed [number] experiments increasing conversion by [X%]</li><li><strong>User Behavior:</strong> Analyzed journeys using [Mixpanel/Amplitude] identifying friction points</li><li><strong>Feature Analysis:</strong> Evaluated [number] launches measuring adoption and impact</li><li><strong>Funnel Optimization:</strong> Improved conversion by [X%] through funnel analysis</li><li><strong>Cross-functional Collaboration:</strong> Partnered with PM, design, engineering teams</li></ul><div class="job-header"><div class="job-title">[Job Title]</div><div class="company-info">[Company], [Location] | [Dates]</div></div><ul><li><strong>Segmentation:</strong> Created user segments enabling personalized experiences</li><li><strong>Retention:</strong> Analyzed cohorts reducing churn by [X%]</li><li><strong>Growth Analytics:</strong> Tracked acquisition metrics optimizing CAC</li><li><strong>Dashboards:</strong> Built self-service dashboards empowering product teams</li></ul><h2>PROJECTS</h2><div style="margin-top:15px"><div style="font-weight:bold;font-size:11pt">[Project Name]</div><div style="font-style:italic;font-size:9pt;color:#555">#ProductAnalytics #ABTesting</div><div style="font-size:10pt;margin-top:5px">[Description of product analysis, methodology, and measurable results]</div></div><h2>EDUCATION</h2><div style="margin-top:15px"><div style="font-weight:bold;font-size:11pt">[Degree] in [Field] | [Year] | GPA: [X.X/4.0]</div><div style="font-style:italic;font-size:10pt">[University], [Location]</div></div></body></html>`
+            },
+            business: {
+                title: 'Business Analyst Resume Template',
+                html: `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{font-family:Calibri,Arial,sans-serif;margin:40px;line-height:1.4;color:#333}h1{text-align:center;font-size:24pt;margin-bottom:5px;color:#2c3e50;font-weight:bold}.contact{text-align:center;font-size:10pt;margin-bottom:20px;color:#555}h2{font-size:14pt;color:#2c3e50;border-bottom:2px solid #3498db;padding-bottom:3px;margin-top:20px;font-weight:bold;margin-bottom:12px}.job-header{margin-top:15px}.job-title{font-weight:bold;font-size:11pt;margin-bottom:3px}.company-info{font-style:italic;font-size:10pt;color:#555;margin-bottom:8px}ul{margin:8px 0;padding-left:25px}li{font-size:10pt;margin-bottom:6px;line-height:1.5}.skills-line{font-size:10pt;margin-bottom:10px;line-height:1.6}.skills-line strong{color:#2c3e50}</style></head><body><h1>[YOUR FULL NAME]</h1><div class="contact">[Phone] | [Email] | [LinkedIn]</div><h2>SKILLS</h2><div class="skills-line"><strong>Business Analysis:</strong> Requirements Gathering, Process Mapping, Gap Analysis, Stakeholder Management</div><div class="skills-line"><strong>Data & BI:</strong> SQL, Excel, Power BI, Tableau, SSRS</div><div class="skills-line"><strong>Methodologies:</strong> Agile/Scrum, Waterfall, Six Sigma, BPMN</div><div class="skills-line"><strong>Tools:</strong> JIRA, Confluence, Visio, Salesforce, SAP</div><div class="skills-line"><strong>Core:</strong> Financial Analysis, ROI Analysis, KPI Development, Change Management</div><h2>PROFESSIONAL EXPERIENCE</h2><div class="job-header"><div class="job-title">[Job Title - Business Analyst]</div><div class="company-info">[Company], [Location] | [Dates]</div></div><ul><li><strong>Requirements:</strong> Gathered requirements from [number] stakeholders creating [number] user stories</li><li><strong>Process Improvement:</strong> Analyzed [number] processes reducing costs by [$X] or [Y%]</li><li><strong>Stakeholder Management:</strong> Liaison between business and IT ensuring alignment</li><li><strong>BI & Reporting:</strong> Created [number] dashboards tracking KPIs</li><li><strong>Project Delivery:</strong> Managed [number] projects achieving [X%] satisfaction</li><li><strong>Financial Analysis:</strong> Conducted cost-benefit analysis securing [$X] funding</li></ul><div class="job-header"><div class="job-title">[Job Title]</div><div class="company-info">[Company], [Location] | [Dates]</div></div><ul><li><strong>Data Analysis:</strong> Performed analysis driving [number] strategic initiatives</li><li><strong>System Implementation:</strong> Led UAT for [system] achieving successful go-live</li><li><strong>Documentation:</strong> Created BRDs, FSDs, process flows, and SOPs</li><li><strong>Gap Analysis:</strong> Identified gaps improving efficiency by [X%]</li></ul><h2>PROJECTS</h2><div style="margin-top:15px"><div style="font-weight:bold;font-size:11pt">[Project Name]</div><div style="font-style:italic;font-size:9pt;color:#555">#ProcessImprovement #SystemImplementation</div><div style="font-size:10pt;margin-top:5px">[Description of business problem, your role, and measurable outcomes]</div></div><h2>EDUCATION</h2><div style="margin-top:15px"><div style="font-weight:bold;font-size:11pt">[Degree] in [Field] | [Year] | GPA: [X.X/4.0]</div><div style="font-style:italic;font-size:10pt">[University], [Location]</div></div><h2>CERTIFICATIONS</h2><div style="font-size:10pt;margin-top:10px">• CBAP - IIBA<br>• PMI-PBA - PMI<br>• CSPO - Scrum Alliance</div></body></html>`
+            }
+        };
+
+        function showTemplate(type) {
+            const template = templates[type];
+            const previewArea = document.getElementById('previewArea');
+            const previewTitle = document.getElementById('previewTitle');
+            const previewContent = document.getElementById('previewContent');
+            
+            previewTitle.textContent = template.title;
+            
+            // Create an iframe to display the template
+            const iframe = document.createElement('iframe');
+            iframe.style.width = '100%';
+            iframe.style.height = '500px';
+            iframe.style.border = '1px solid #ddd';
+            iframe.style.borderRadius = '8px';
+            
+            previewContent.innerHTML = '';
+            previewContent.appendChild(iframe);
+            
+            // Write the template HTML to the iframe
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(template.html);
+            iframeDoc.close();
+            
+            // Store the current template HTML for copying
+            window.currentTemplateHTML = template.html;
+            
+            // Show the preview area and scroll to it
+            previewArea.classList.add('active');
+            previewArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function closePreview() {
+            const previewArea = document.getElementById('previewArea');
+            previewArea.classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function copyToClipboard() {
+            const copyBtn = document.getElementById('copyBtn');
+            const html = window.currentTemplateHTML;
+            
+            // Create a temporary textarea to copy the HTML
+            const textarea = document.createElement('textarea');
+            textarea.value = html;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                copyBtn.textContent = '✅ Copied to Clipboard!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.textContent = '📋 Copy HTML to Clipboard';
+                    copyBtn.classList.remove('copied');
+                }, 3000);
+            } catch (err) {
+                alert('Failed to copy. Please try selecting and copying the template manually.');
+            }
+            
+            document.body.removeChild(textarea);
+        }
+    </script>
+</body>
+</html>
